@@ -1,0 +1,27 @@
+const int verdePin = 11;
+const int amarilloPin = 13;
+const int rojoPin = 12;
+
+const unsigned long verdeDuracion = 5000;
+const unsigned long amarilloDuracion = 2000;
+const unsigned long rojoDuracion = 5000;
+
+void setup() {
+  pinMode(verdePin, OUTPUT);
+  pinMode(amarilloPin, OUTPUT);
+  pinMode(rojoPin, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(verdePin, HIGH);
+  delay(verdeDuracion);
+  digitalWrite(verdePin, LOW);
+
+  digitalWrite(amarilloPin, HIGH);
+  delay(amarilloDuracion);
+  digitalWrite(amarilloPin, LOW);
+
+  digitalWrite(rojoPin, HIGH);
+  delay(rojoDuracion);
+  digitalWrite(rojoPin, LOW);
+}
