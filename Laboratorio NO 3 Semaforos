@@ -1,0 +1,82 @@
+const int S1_rojo = 2;
+const int S1_amarillo = 3;
+const int S1_verde = 4;
+
+const int S2_rojo = 5;
+const int S2_amarillo = 6;
+const int S2_verde = 7;
+
+const int S3_rojo = 8;
+const int S3_amarillo = 9;
+const int S3_verde = 10;
+
+const int S4_rojo = 11;
+const int S4_amarillo = 12;
+const int S4_verde = 13;
+
+void setup() {
+  pinMode(S1_rojo, OUTPUT);
+  pinMode(S1_amarillo, OUTPUT);
+  pinMode(S1_verde, OUTPUT);
+
+  pinMode(S2_rojo, OUTPUT);
+  pinMode(S2_amarillo, OUTPUT);
+  pinMode(S2_verde, OUTPUT);
+
+  pinMode(S3_rojo, OUTPUT);
+  pinMode(S3_amarillo, OUTPUT);
+  pinMode(S3_verde, OUTPUT);
+
+  pinMode(S4_rojo, OUTPUT);
+  pinMode(S4_amarillo, OUTPUT);
+  pinMode(S4_verde, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(S1_verde, HIGH);
+  digitalWrite(S2_rojo, HIGH);
+  digitalWrite(S3_rojo, HIGH);
+  digitalWrite(S4_rojo, HIGH);
+  delay(10000);
+
+  digitalWrite(S1_verde, LOW);
+  digitalWrite(S1_amarillo, HIGH);
+  delay(5000);
+  
+  digitalWrite(S1_amarillo, LOW);
+  digitalWrite(S1_rojo, HIGH);
+  digitalWrite(S2_verde, HIGH);
+  digitalWrite(S3_rojo, HIGH);
+  digitalWrite(S4_rojo, HIGH);
+  delay(10000);
+  
+  digitalWrite(S2_verde, LOW);
+  digitalWrite(S2_amarillo, HIGH);
+  delay(5000);
+  
+  digitalWrite(S2_amarillo, LOW);
+  digitalWrite(S2_rojo, HIGH);
+  digitalWrite(S3_verde, HIGH);
+  digitalWrite(S1_rojo, HIGH);
+  digitalWrite(S4_rojo, HIGH);
+  delay(5000);
+  
+  digitalWrite(S3_verde, LOW);
+  digitalWrite(S3_amarillo, HIGH);
+  delay(2000);
+  
+  digitalWrite(S3_amarillo, LOW);
+  digitalWrite(S3_rojo, HIGH);
+  digitalWrite(S4_verde, HIGH);
+  digitalWrite(S1_rojo, HIGH);
+  digitalWrite(S2_rojo, HIGH);
+  delay(5000);
+  
+  digitalWrite(S4_verde, LOW);
+  digitalWrite(S4_amarillo, HIGH);
+  delay(2000);
+  
+  digitalWrite(S4_amarillo, LOW);
+  digitalWrite(S4_rojo, HIGH);
+  digitalWrite(S1_verde, HIGH);
+}
