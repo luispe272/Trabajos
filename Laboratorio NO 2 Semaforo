@@ -1,0 +1,94 @@
+const int ledRojo1 = 2;
+const int ledAmarillo1 = 3;
+const int ledVerde1 = 4;
+
+const int ledRojo2 = 5;
+const int ledAmarillo2 = 6;
+const int ledVerde2 = 7;
+
+const int ledRojo3 = 8;
+const int ledAmarillo3 = 9;
+const int ledVerde3 = 10;
+
+const int interruptor = 11;
+
+bool sistemaEncendido = false;
+
+void setup() {
+  pinMode(ledRojo1, OUTPUT);
+  pinMode(ledAmarillo1, OUTPUT);
+  pinMode(ledVerde1, OUTPUT);
+
+  pinMode(ledRojo2, OUTPUT);
+  pinMode(ledAmarillo2, OUTPUT);
+  pinMode(ledVerde2, OUTPUT);
+
+  pinMode(ledRojo3, OUTPUT);
+  pinMode(ledAmarillo3, OUTPUT);
+  pinMode(ledVerde3, OUTPUT);
+
+  pinMode(interruptor, INPUT);
+  Serial.begin(9600);
+}
+
+void loop() {
+  sistemaEncendido = digitalRead(interruptor);
+
+  if (sistemaEncendido) {
+    secuenciaSemaforos();
+  } else {
+    lucesIntermitentes();
+  }
+}
+
+void secuenciaSemaforos() {
+  cambiarSemaforos(HIGH, LOW, LOW);
+  delay(3000);
+
+  cambiarSemaforos(LOW, HIGH, LOW);
+  delay(3000);
+
+  cambiarSemaforos(LOW, LOW, HIGH);
+  delay(3000);  
+}
+
+void cambiarSemaforos(bool semaforo1Verde, bool semaforo2Verde, bool semaforo3Verde) {
+  digitalWrite(ledVerde1, semaforo1Verde);
+  digitalWrite(ledRojo1, !semaforo1Verde);
+  digitalWrite(ledAmarillo1, LOW);
+
+  digitalWrite(ledVerde2, semaforo2Verde);
+  digitalWrite(ledRojo2, !semaforo2Verde);
+  digitalWrite(ledAmarillo2, LOW);
+
+  digitalWrite(ledVerde3, semaforo3Verde);
+  digitalWrite(ledRojo3, !semaforo3Verde);
+  digitalWrite(ledAmarillo3, LOW);
+
+  Serial.print("Semáforo 1: ");
+  Serial.println(semaforo1Verde ? "Verde" : "Rojo");
+
+  Serial.print("Semáforo 2: ");
+  Serial.println(semaforo2Verde ? "Verde" : "Rojo");
+
+  Serial.print("Semáforo 3: ");
+  Serial.println(semaforo3Verde ? "Verde" : "Rojo");
+  
+  Serial.println();  // Línea en blanco para separación
+}
+
+void lucesIntermitentes() {
+  digitalWrite(ledAmarillo1, HIGH);
+  digitalWrite(ledAmarillo2, HIGH);
+  digitalWrite(ledAmarillo3, HIGH);
+  
+  Serial.println("Intermitentes amarillos encendidos en todos los semáforos");
+  delay(500);
+
+  digitalWrite(ledAmarillo1, LOW);
+  digitalWrite(ledAmarillo2, LOW);
+  digitalWrite(ledAmarillo3, LOW);
+  
+  Serial.println("Intermitentes amarillos apagados en todos los semáforos");
+  delay(500);
+}
