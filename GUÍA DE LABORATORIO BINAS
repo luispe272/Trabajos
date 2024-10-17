@@ -1,0 +1,35 @@
+const int analogIn = A0;
+int humiditysensorOutput = 0;
+// Defining Variables
+int Value= 0;
+double Voltage = 0;
+double tempC = 0;
+double tempF = 0;
+
+void setup(){  
+  Serial.begin(9600);
+  pinMode(A1, INPUT);
+}
+
+void loop(){
+  
+  Value = analogRead(analogIn);
+  Voltage = (Value / 1023.0) * 5000; 
+  tempC = (Voltage-500) * 0.1; 
+  tempF = (tempC * 1.8) + 32;  
+  Serial.print("Valor = " );                  
+  Serial.print(Value);      
+  Serial.print("\t milli voltios = ");
+  Serial.print(Voltage,0); //
+  Serial.print("\t Temperatura en Celsius = ");
+  Serial.print(tempC,1);
+  Serial.print("\t Temperature en Farenheit = ");
+  Serial.println(tempF,1);
+  humiditysensorOutput = analogRead(A1);
+  Serial.print("Humedad: ");
+  Serial.print(map(humiditysensorOutput, 0, 1023, 10, 70));
+  Serial.println("%");
+
+  delay(5000); 
+
+}
